@@ -88,21 +88,6 @@ class MapViewController: UIViewController {
     mapView.addOverlay(polyline) //Add lines
   }
 
-//  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    if let touch = touches.first {
-//      let coordinate = mapView.convert(touch.location(in: mapView), toCoordinateFrom: mapView)
-//      points.append(coordinate)
-//      let polyline = MKPolyline(coordinates: points, count: points.count)
-//      mapView.addOverlay(polyline) //Add lines
-//    }
-//  }
-//
-//  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    let polygon = MKPolygon(coordinates: &points, count: points.count)
-//    mapView.addOverlay(polygon) //Add polygon areas
-//    points = [] //Reset points
-//  }
-
   private func centerOnVenue() {
     let location = CLLocation(latitude: 53.11492071953518, longitude: 4.89718462979863)
     centerMapOnLocation(location: location)
