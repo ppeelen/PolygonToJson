@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mM3-eu-XFI">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Map View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="MapPolygonTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bqS-7z-06o">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="c9h-Dv-kAC"/>
+                                </connections>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKm-Ey-PIG">
+                                <rect key="frame" x="20" y="798" width="374" height="44"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JbV-Iq-Yfk">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vn-zM-yKY">
+                                                <rect key="frame" x="0.0" y="0.0" width="187" height="44"/>
+                                                <state key="normal" title="Complete"/>
+                                                <connections>
+                                                    <action selector="completePolygon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z9D-cU-1H0"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0T-Y5-AUG">
+                                                <rect key="frame" x="187" y="0.0" width="187" height="44"/>
+                                                <state key="normal" title="Remove last"/>
+                                                <connections>
+                                                    <action selector="undoLast:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R2E-2m-5Qa"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="JbV-Iq-Yfk" firstAttribute="top" secondItem="zKm-Ey-PIG" secondAttribute="top" id="5bv-yz-tmN"/>
+                                    <constraint firstItem="JbV-Iq-Yfk" firstAttribute="leading" secondItem="zKm-Ey-PIG" secondAttribute="leading" id="Erh-Og-iyT"/>
+                                    <constraint firstAttribute="trailing" secondItem="JbV-Iq-Yfk" secondAttribute="trailing" id="Pzu-38-hqO"/>
+                                    <constraint firstAttribute="bottom" secondItem="JbV-Iq-Yfk" secondAttribute="bottom" id="S2k-vr-KbK"/>
+                                    <constraint firstAttribute="height" constant="44" id="SYE-xv-bKS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zKm-Ey-PIG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="GZc-mo-WYc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zKm-Ey-PIG" secondAttribute="bottom" constant="20" id="LXU-DS-lrE"/>
+                            <constraint firstAttribute="bottom" secondItem="bqS-7z-06o" secondAttribute="bottom" id="h8S-Vq-qOb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bqS-7z-06o" secondAttribute="trailing" id="mSt-Ds-uiw"/>
+                            <constraint firstItem="bqS-7z-06o" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xKr-dk-DYT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zKm-Ey-PIG" secondAttribute="trailing" constant="20" id="y94-d8-Aa3"/>
+                            <constraint firstItem="bqS-7z-06o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zFY-tn-ZX3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ArT-tE-b9t">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="cAd-6G-4vq">
+                            <connections>
+                                <action selector="resetButtonPressed:" destination="BYZ-38-t0r" id="Dew-25-aF0"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wPm-Sz-4kL">
+                            <rect key="frame" x="143.5" y="7" width="127" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Map"/>
+                                <segment title="Satellite"/>
+                            </segments>
+                            <connections>
+                                <action selector="updateSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="MFP-lT-WhL"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="JSON" id="0aE-os-ZsO">
+                            <connections>
+                                <segue destination="bT3-7v-d5b" kind="show" id="VYU-He-NkO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="actionView" destination="zKm-Ey-PIG" id="E4j-jP-q1z"/>
+                        <outlet property="completeButton" destination="5vn-zM-yKY" id="RTM-BU-kJD"/>
+                        <outlet property="generateJson" destination="0aE-os-ZsO" id="PXO-dw-utT"/>
+                        <outlet property="mapView" destination="bqS-7z-06o" id="e1W-7F-1vZ"/>
+                        <outlet property="resetButton" destination="cAd-6G-4vq" id="yb9-C5-xWF"/>
+                        <outlet property="undoButton" destination="S0T-Y5-AUG" id="8cM-8z-ZKC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FFw-5L-bdn">
+            <objects>
+                <viewController id="bT3-7v-d5b" customClass="JSONViewController" customModule="MapPolygonTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dsa-Oc-XUY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bau-v2-bge">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bT3-7v-d5b" id="MpR-5e-fC5"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bau-v2-bge" firstAttribute="top" secondItem="vHs-ey-K9E" secondAttribute="top" id="2Lx-JU-pad"/>
+                            <constraint firstAttribute="bottom" secondItem="bau-v2-bge" secondAttribute="bottom" id="946-Sb-ZyX"/>
+                            <constraint firstItem="bau-v2-bge" firstAttribute="leading" secondItem="vHs-ey-K9E" secondAttribute="leading" id="Loa-Ra-mKo"/>
+                            <constraint firstItem="bau-v2-bge" firstAttribute="trailing" secondItem="vHs-ey-K9E" secondAttribute="trailing" id="Y1b-yk-PDM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vHs-ey-K9E"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="bau-v2-bge" id="LEd-pZ-lb3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gOu-rl-81O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="21"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8Ed-Xq-vZE">
+            <objects>
+                <navigationController id="mM3-eu-XFI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VQx-13-tRS">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0XQ-Lt-gzu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOi-2c-s2P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-809" y="21"/>
+        </scene>
+    </scenes>
+</document>
