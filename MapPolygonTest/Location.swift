@@ -8,11 +8,12 @@
 
 import CoreLocation
 
-struct Locations: Codable {
-  var points: [Location]
+struct Location: Codable {
+  var name: String?
+  var points: [Coordinate]
 }
 
-struct Location: Codable {
+struct Coordinate: Codable {
 
   var latitude: Double {
     return coordinate.latitude

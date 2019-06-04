@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A7AB84922A70B9500E2D898 /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB84822A70B9500E2D898 /* ListingViewController.swift */; };
+		2A7AB84B22A70D5A00E2D898 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB84A22A70D5A00E2D898 /* TextFieldCell.swift */; };
 		2A9D2AD422A4673100AC960D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9D2AD322A4673100AC960D /* AppDelegate.swift */; };
 		2A9D2AD622A4673100AC960D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9D2AD522A4673100AC960D /* MapViewController.swift */; };
 		2A9D2AD922A4673100AC960D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9D2AD722A4673100AC960D /* Main.storyboard */; };
 		2A9D2ADB22A4673300AC960D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9D2ADA22A4673300AC960D /* Assets.xcassets */; };
 		2A9D2ADE22A4673300AC960D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9D2ADC22A4673300AC960D /* LaunchScreen.storyboard */; };
 		2A9D2AE622A46C0800AC960D /* JSONViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9D2AE522A46C0800AC960D /* JSONViewController.swift */; };
-		2A9D2AE822A470EF00AC960D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9D2AE722A470EF00AC960D /* Location.swift */; };
+		2A9D2AEB22A47DF200AC960D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9D2AEA22A47DF200AC960D /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A7AB84822A70B9500E2D898 /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
+		2A7AB84A22A70D5A00E2D898 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		2A9D2AD022A4673100AC960D /* MapPolygonTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapPolygonTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9D2AD322A4673100AC960D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9D2AD522A4673100AC960D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +29,7 @@
 		2A9D2ADD22A4673300AC960D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A9D2ADF22A4673300AC960D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A9D2AE522A46C0800AC960D /* JSONViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONViewController.swift; sourceTree = "<group>"; };
-		2A9D2AE722A470EF00AC960D /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		2A9D2AEA22A47DF200AC960D /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 		2A9D2AD222A4673100AC960D /* MapPolygonTest */ = {
 			isa = PBXGroup;
 			children = (
+				2A9D2AEA22A47DF200AC960D /* Location.swift */,
 				2A9D2AD322A4673100AC960D /* AppDelegate.swift */,
 				2A9D2ADA22A4673300AC960D /* Assets.xcassets */,
 				2A9D2ADF22A4673300AC960D /* Info.plist */,
@@ -65,7 +70,8 @@
 				2A9D2ADC22A4673300AC960D /* LaunchScreen.storyboard */,
 				2A9D2AD722A4673100AC960D /* Main.storyboard */,
 				2A9D2AD522A4673100AC960D /* MapViewController.swift */,
-				2A9D2AE722A470EF00AC960D /* Location.swift */,
+				2A7AB84822A70B9500E2D898 /* ListingViewController.swift */,
+				2A7AB84A22A70D5A00E2D898 /* TextFieldCell.swift */,
 			);
 			path = MapPolygonTest;
 			sourceTree = "<group>";
@@ -143,8 +149,10 @@
 			files = (
 				2A9D2AD622A4673100AC960D /* MapViewController.swift in Sources */,
 				2A9D2AD422A4673100AC960D /* AppDelegate.swift in Sources */,
-				2A9D2AE822A470EF00AC960D /* Location.swift in Sources */,
+				2A9D2AEB22A47DF200AC960D /* Location.swift in Sources */,
 				2A9D2AE622A46C0800AC960D /* JSONViewController.swift in Sources */,
+				2A7AB84922A70B9500E2D898 /* ListingViewController.swift in Sources */,
+				2A7AB84B22A70D5A00E2D898 /* TextFieldCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,13 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+  var locations: [Location] = [] {
+    didSet {
+      showListing.isEnabled = locations.count > 0
+      saveToFile()
+    }
+  }
+
   var points: [CLLocationCoordinate2D] = [] {
     didSet {
       print(points)
@@ -23,7 +30,7 @@ class MapViewController: UIViewController {
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var resetButton: UIBarButtonItem!
   @IBOutlet weak var actionView: UIView!
-  @IBOutlet weak var generateJson: UIBarButtonItem!
+  @IBOutlet weak var showListing: UIBarButtonItem!
 
   @IBOutlet weak var completeButton: UIButton!
   @IBOutlet weak var undoButton: UIButton!
@@ -31,7 +38,18 @@ class MapViewController: UIViewController {
   @IBAction func completePolygon(_ sender: UIButton) {
     let polygon = MKPolygon(coordinates: &points, count: points.count)
     mapView.addOverlay(polygon) //Add polygon areas
-    generateJson.isEnabled = true
+
+    var coordinates: [Coordinate] = []
+    for point in points {
+      coordinates.append(Coordinate(coordinate: point))
+    }
+    let location = Location(name: nil, points: coordinates)
+    locations.append(location)
+    points = []
+    reset()
+    showListing.title = "Show lists (\(locations.count))"
+
+    drawCompletedLocatios()
   }
 
   @IBAction func undoLast(_ sender: UIButton) {
@@ -55,9 +73,13 @@ class MapViewController: UIViewController {
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let vc = segue.destination as? JSONViewController {
+    if let vc = segue.destination as? ListingViewController {
       vc.loadView()
-      vc.setup(withPoints: points)
+      vc.setup(withLocations: locations)
+      vc.didUpdateLocation = { locations in
+        self.locations = locations
+        self.fullReset()
+      }
     }
   }
 
@@ -65,13 +87,31 @@ class MapViewController: UIViewController {
     super.viewDidLoad()
     centerOnVenue()
     resetButton.isEnabled = false
-    generateJson.isEnabled = false
+    showListing.isEnabled = false
     completeButton.isEnabled = false
     undoButton.isEnabled = false
+
+    locations = loadFromFile()
+    fullReset()
+  }
+
+  func fullReset() {
+    reset()
+    showListing.title = "Show lists (\(locations.count))"
+
+    drawCompletedLocatios()
   }
 
   func reset() {
     mapView.removeOverlays(mapView.overlays) //Reset shapes
+  }
+
+  func drawCompletedLocatios() {
+    for location in locations {
+      let locationPoints = location.points.compactMap({ $0.coordinate })
+      let polygon = MKPolygon(coordinates: locationPoints, count: locationPoints.count)
+      mapView.addOverlay(polygon)
+    }
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -83,7 +123,6 @@ class MapViewController: UIViewController {
   }
 
   func updatePolylines() {
-    reset()
     let polyline = MKPolyline(coordinates: points, count: points.count)
     mapView.addOverlay(polyline) //Add lines
   }
@@ -101,6 +140,33 @@ class MapViewController: UIViewController {
       let annotation = MKPointAnnotation()
       annotation.coordinate = location.coordinate
       self.mapView.addAnnotation(annotation)
+    }
+  }
+
+  private func saveToFile() {
+    guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("locations.json") else { debugPrint("Could not make path"); return }
+
+    do {
+      let encoder = JSONEncoder()
+      encoder.outputFormatting = .prettyPrinted
+      let jsonText = try encoder.encode(locations)
+      try jsonText.write(to: url)
+      debugPrint("Saved to file: \(url.path)")
+    } catch {
+      debugPrint("Could not encode! Error: \(error.localizedDescription)")
+      return
+    }
+  }
+
+  private func loadFromFile() -> [Location] {
+    guard let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("locations.json") else { debugPrint("Could not make path"); return [] }
+    guard let data = FileManager.default.contents(atPath: path.path) else { debugPrint("File has no content!"); return [] }
+
+    do {
+      return try JSONDecoder().decode([Location].self, from: data)
+    } catch {
+      debugPrint("Could not decode! Error: \(error.localizedDescription)")
+      return []
     }
   }
 }

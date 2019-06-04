@@ -14,23 +14,18 @@ class JSONViewController: UIViewController {
   @IBOutlet weak var textView: UITextView!
 
   private var points: [CLLocationCoordinate2D] = []
+  private var locations: [Location] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
   }
 
-  func setup(withPoints points: [CLLocationCoordinate2D]) {
-    self.points = points
+  func setup(withLocations locations: [Location]) {
+    self.locations = locations
     makeJsonData()
   }
 
   func makeJsonData() {
-    var locations: [Location] = []
-
-    for point in points {
-      locations.append(Location(coordinate: point))
-    }
-
     do {
       let encoder = JSONEncoder()
       encoder.outputFormatting = .prettyPrinted

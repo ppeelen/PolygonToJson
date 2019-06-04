@@ -39,7 +39,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0T-Y5-AUG">
                                                 <rect key="frame" x="187" y="0.0" width="187" height="44"/>
-                                                <state key="normal" title="Remove last"/>
+                                                <state key="normal" title="Undo"/>
                                                 <connections>
                                                     <action selector="undoLast:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R2E-2m-5Qa"/>
                                                 </connections>
@@ -76,7 +76,7 @@
                                 <action selector="resetButtonPressed:" destination="BYZ-38-t0r" id="Dew-25-aF0"/>
                             </connections>
                         </barButtonItem>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wPm-Sz-4kL">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wPm-Sz-4kL">
                             <rect key="frame" x="143.5" y="7" width="127" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -87,23 +87,97 @@
                                 <action selector="updateSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="MFP-lT-WhL"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" title="JSON" id="0aE-os-ZsO">
+                        <barButtonItem key="rightBarButtonItem" title="Show list" id="0aE-os-ZsO">
                             <connections>
-                                <segue destination="bT3-7v-d5b" kind="show" id="VYU-He-NkO"/>
+                                <segue destination="x0Z-u4-b05" kind="show" id="MtS-gl-N2s"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="actionView" destination="zKm-Ey-PIG" id="E4j-jP-q1z"/>
                         <outlet property="completeButton" destination="5vn-zM-yKY" id="RTM-BU-kJD"/>
-                        <outlet property="generateJson" destination="0aE-os-ZsO" id="PXO-dw-utT"/>
                         <outlet property="mapView" destination="bqS-7z-06o" id="e1W-7F-1vZ"/>
                         <outlet property="resetButton" destination="cAd-6G-4vq" id="yb9-C5-xWF"/>
+                        <outlet property="showListing" destination="0aE-os-ZsO" id="PXO-dw-utT"/>
                         <outlet property="undoButton" destination="S0T-Y5-AUG" id="8cM-8z-ZKC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Listing View Controller-->
+        <scene sceneID="CA6-MQ-o6i">
+            <objects>
+                <viewController id="x0Z-u4-b05" customClass="ListingViewController" customModule="MapPolygonTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ner-T5-r0B">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="60" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v20-um-hKp">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextFieldCell" rowHeight="60" id="7nb-l6-6Ps" customClass="TextFieldCell" customModule="MapPolygonTest" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7nb-l6-6Ps" id="NnK-Ln-hNJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No name set" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iJ5-sg-CCw">
+                                                    <rect key="frame" x="30" y="13" width="354" height="34"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="7nb-l6-6Ps" id="89A-Py-Mcd"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="iJ5-sg-CCw" secondAttribute="trailing" constant="10" id="AH5-4N-IWy"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="iJ5-sg-CCw" secondAttribute="bottom" constant="2" id="CXf-1V-wDg"/>
+                                                <constraint firstItem="iJ5-sg-CCw" firstAttribute="leading" secondItem="NnK-Ln-hNJ" secondAttribute="leadingMargin" constant="10" id="SgD-5s-gif"/>
+                                                <constraint firstItem="iJ5-sg-CCw" firstAttribute="top" secondItem="NnK-Ln-hNJ" secondAttribute="topMargin" constant="2" id="bgs-JN-aQM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="iJ5-sg-CCw" id="JGN-Bj-Tgh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="x0Z-u4-b05" id="zFx-wr-RL2"/>
+                                    <outlet property="delegate" destination="x0Z-u4-b05" id="omE-xQ-ENj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="v20-um-hKp" secondAttribute="bottom" id="8ib-Ve-fAS"/>
+                            <constraint firstItem="FP7-ZQ-NUv" firstAttribute="trailing" secondItem="v20-um-hKp" secondAttribute="trailing" id="Khh-jz-LbP"/>
+                            <constraint firstItem="v20-um-hKp" firstAttribute="top" secondItem="Ner-T5-r0B" secondAttribute="top" id="bS0-Wf-nqK"/>
+                            <constraint firstItem="v20-um-hKp" firstAttribute="leading" secondItem="FP7-ZQ-NUv" secondAttribute="leading" id="reL-ML-qZZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FP7-ZQ-NUv"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Og6-gA-gCo">
+                        <nil key="title"/>
+                        <barButtonItem key="rightBarButtonItem" title="Show JSON" id="QoN-x0-WZy">
+                            <connections>
+                                <segue destination="bT3-7v-d5b" kind="show" id="R09-r3-gjl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="v20-um-hKp" id="jrX-ei-jD1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Sw-3K-RTC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="23"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FFw-5L-bdn">
@@ -139,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOu-rl-81O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1491" y="21"/>
+            <point key="canvasLocation" x="2257" y="21"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8Ed-Xq-vZE">
